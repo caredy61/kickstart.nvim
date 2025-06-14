@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -239,6 +239,16 @@ require('lazy').setup({
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
+
+  {
+    'akinsho/flutter-tools.nvim',
+    lazy = false,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'stevearc/dressing.nvim',
+    },
+    config = true,
+  },
 
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
@@ -778,13 +788,14 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
+    --     'folke/tokyonight.nvim',
+    'raki/awesome-vim-colorschemes',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'molokai'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
@@ -907,6 +918,10 @@ require('lazy').setup({
     },
   },
 })
+
+-- Own keymappings:
+vim.keymap.set('n', '<C-s>', '<cmd>Explore<CR>')
+vim.keymap.set('n', '<C-d>', '<cmd>Sexplore!<CR>')
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
